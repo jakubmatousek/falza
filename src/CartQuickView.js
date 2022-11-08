@@ -34,7 +34,7 @@ function OpenCart({productsInCart, setProductsInCart}){
         <span className="prodAmountInCart">
         <button onClick={()=>{
                     let productsInCartCopy = [...productsInCart]
-                    deleteFromList(productsInCartCopy)
+                    deleteFromList(productsInCartCopy, product.id)
                     setProductsInCart(productsInCartCopy)
                   }}>-</button>
           <span className="amount">{amountOfThisProduct}</span>
