@@ -8,18 +8,19 @@ import {PRODUCTS} from "./data.js"
 import {Sidebar} from "./Sidebar.js"
 
 function App() {
-  const [activeCategory, setActiveCategory] = useState(null)
-  const [productsInCart, setProductsInCart] = useState([])
   const maxPrice = getMostExpensiveProduct()
-  const [priceFilter, setPriceFilter] = useState(maxPrice)
-  const [stockFilter, setStockFilter] = useState(false)
   const productCategories = getProductCategories()
 
-  var filteredProducts = PRODUCTS.filter((p)=>p.price<=priceFilter)
-  if(stockFilter){
-    filteredProducts = filteredProducts.filter((p)=>p.stocked === true)
-  }
+  const [activeCategory, setActiveCategory] = useState(null)
+  const [productsInCart, setProductsInCart] = useState([])
+  const [priceFilter, setPriceFilter] = useState(maxPrice)
+  const [stockFilter, setStockFilter] = useState(false)
+  const [sortByCheapest, setSortByCheapest] = useState(true)
 
+  var filteredProducts = filterByPrice(PRODUCTS, priceFilter)
+  filteredProducts = stockFilter ?  filterByStock(filteredProducts) : filteredProducts
+  filteredProducts = sortProducts(filteredProducts, sortByCheapest)
+  console.log(filteredProducts)
   return (
     <div className="App">
       <Navbar productCategories={productCategories}
@@ -33,6 +34,8 @@ function App() {
                  stockFilter={stockFilter}
                  setStockFilter={setStockFilter}
                  maxPrice={maxPrice}
+                 sortByCheapest={sortByCheapest}
+                 setSortByCheapest={setSortByCheapest}
                  />
         <Products products={filteredProducts}
                   activeCategory={activeCategory}
@@ -51,6 +54,22 @@ function getProductCategories(){
 function getMostExpensiveProduct(){
   return Math.max(...PRODUCTS.map((p)=>p.price))
 }
+
+function filterByPrice(products, maxPrice){
+  return products.filter((product) => product.price <= maxPrice)
+}
+
+function filterByStock(products){
+  return products.filter((product) => product.stocked === true)
+}
+
+function sortProducts(products, sortByCheapest){
+  console.log(sortByCheapest)
+  if (sortByCheapest == 1)
+    return products.sort((a, b)=> a["price"] - b["price"]);
+  return products.sort((a, b)=> b["price"] - a["price"]);
+}
+
 export default App;
 
 

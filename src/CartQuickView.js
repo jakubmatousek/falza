@@ -57,6 +57,6 @@ function OpenCart({productsInCart, setProductsInCart}){
 
 function deleteFromList(list, deletedElement){
   let delIndex = list.indexOf(deletedElement)
-  list.splice(delIndex, 1); ; // delete element with index 4return 
+  list.splice(delIndex, 1); ;  
 }
   

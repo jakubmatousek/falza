@@ -48,7 +48,7 @@ export function Products({products, activeCategory, productsInCart, setProductsI
               }else{
                 setProductsInCart([...productsInCart, id])
               }
-              }}><img src={koupitImg}/></button>
+              }}></button>
           </div>
           <div className='stocked'>{stocked ? "skladem" : "momentálně nedostupné"}</div>
         </div>
