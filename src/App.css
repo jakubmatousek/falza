@@ -49,6 +49,7 @@ a:hover .bigLogoImg{
   background-color: var(--cursor-active);
   cursor: pointer;
 }
+
 .productCount{
   position: absolute;
   left: 50%;
@@ -84,6 +85,7 @@ a:hover .bigLogoImg{
   position: relative;
   border: 3px solid black;
   background-color: white;
+  height: fit-content;
 }
 
 
@@ -126,7 +128,7 @@ a:hover .bigLogoImg{
   background-image: url('img/btn.png');
   background-size: contain;
   background-repeat: no-repeat;
-  width: 25%;
+  width: 50px;
 }
 
 .buyButton:hover{
@@ -253,3 +255,23 @@ a:hover .bigLogoImg{
   margin-bottom: 15px;
   border-bottom:1px solid black ;
 }
+
+
+@media only screen and (max-width: 1200px){
+  .Products{
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    width: 70vw;
+    margin-left:2.5vw;
+  }
+
+  .Sidebar{
+    width: 20vw;
+  }
+
+  .NavbarOptions {
+    width: 60vw;
+  }
+
+}
+
